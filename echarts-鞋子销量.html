@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <title>ECharts 5分钟上手写ECharts的第一个图表</title>
+</head>
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="height:400px"></div>
+    <!-- ECharts单文件引入 -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+
+var label=["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"];
+var a    =[5, 20, 40, 10, 10, 20];
+var b    =[5, 20, 38, 10, 24, 20,24,32];
+
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+                'echarts/chart/line'
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main')); 
+//ShowLoading...
+
+/*
+myChart.showLoading({
+    text : "哥很累,但脚步不停...",
+
+    textStyle : {
+        fontSize : 20
+    }
+});
+*/
+//随着网页缩放自动缩放图标
+window.onresize = myChart.resize;
+                var option = {
+title:{
+        text:'销量图',
+        subtext:'纯属捏造，如有雷同，人品爆发。'
+      },
+                    tooltip: {
+                        show: true
+                    },
+                    legend: {
+                        data:['销量']
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : label
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            "name":"销量",
+                            type: 'line',
+                            "data":a
+                        },
+
+           //折线图
+         {
+          "name":"销量",
+         type: 'bar',
+          "data":b,
+           //绘制平均线
+           markLine : {
+             data : [
+               {type : 'average', name: '平均值'}
+               ]
+           },
+          //绘制最高最低点
+          markPoint : {
+            data : [
+              {type : 'max', name: '最大值'},
+              {type : 'min', name: '最小值'}
+            ]
+          }
+}
+                    ]
+                };
+        
+                // 为echarts对象加载数据 
+                myChart.setOption(option); 
+            }
+        
+);
+
+    </script>
+</body>
