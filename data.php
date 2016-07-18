@@ -1,6 +1,6 @@
 <?php
 // Connect to MySQL
-$link = mysql_connect( '127.0.0.1', 'root', '' );
+$link = mysql_connect( 'localhost', 'root', '' );
 if ( !$link ) {
   die( 'Could not connect: ' . mysql_error() );
 }
