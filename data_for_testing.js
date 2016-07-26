@@ -1,27 +1,4 @@
 var data=[
-        {
-            name:'手机占有率',
-            type:'treemap',
-          top: 50,
-            itemStyle: {
-                normal: {
-                    label: {
-                        show: true,
-                        formatter: "{b}"
-                    },
-                    borderWidth: 1,
-                    borderColor: '#ccc'
-                },
-                emphasis: {
-                    label: {
-                        show: true
-                    },
-                    color: '#cc99cc',
-                    borderWidth: 3,
-                    borderColor: '#996699'
-                }
-            },
-            data:[
                 {
                     name: '三星',
                     value: 6,
@@ -29,11 +6,11 @@ var data=[
                         {
                             name: 'Galaxy S4',
                             value: 2,
-                          children:[{ name :'dsd',
+                          children:[{ name :'S4-1',
                           value: 2},
-                                    { name :'sd c',
+                                    { name :'S4-2',
                           value: 2},
-                                    { name :'wes',
+                                    { name :'S4-3',
                           value: 2},
                                    ]
                          
@@ -189,6 +166,4 @@ var data=[
                         }
                     ]
                 }
-            ]
-        }
-    ];
+        ];
