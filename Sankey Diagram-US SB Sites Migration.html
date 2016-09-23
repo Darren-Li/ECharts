@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+        <title>ECharts - Sankey Diagram</title>
+    </head>
+    <body>
+        <style>
+            html, body, #main {
+                width: 100%;
+                height: 90%;
+                /*border: 1px solid #000;*/
+            }
+        </style>
+        <div id="main"><div>
+
+        <script src="../js/echarts.js"></script>
+        <script src="../js/theme/dark.js"></script>
+        <script type="text/javascript">
+        var nodes = [
+                       {"name":"H-Q1"},
+                       {"name":"M-Q1"},
+                       {"name":"L-Q1"},
+                       {"name":"R-Q1"},
+                       {"name":"A-Q1"},
+                       {"name":"H-Q2"},
+                       {"name":"M-Q2"},
+                       {"name":"L-Q2"},
+                       {"name":"R-Q2"},
+                       // {"name":"A-Q2"}
+                    ];
+        var links = [
+                       {"source": "H-Q1", "target": "H-Q2",  "value": 135390},
+                       {"source": "H-Q1", "target": "M-Q2",  "value": 11183},
+                       {"source": "H-Q1", "target": "L-Q2",  "value": 2847},
+                       {"source": "H-Q1", "target": "R-Q2",  "value": 63679},
+
+                       {"source": "M-Q1", "target": "H-Q2",  "value": 10654},
+                       {"source": "M-Q1", "target": "M-Q2",  "value": 111259},
+                       {"source": "M-Q1", "target": "L-Q2",  "value": 9397},
+                       {"source": "M-Q1", "target": "R-Q2",  "value": 81787},
+
+                       {"source": "L-Q1", "target": "H-Q2",  "value": 2741},
+                       {"source": "L-Q1", "target": "M-Q2",  "value": 10217},
+                       {"source": "L-Q1", "target": "L-Q2",  "value": 149627},
+                       {"source": "L-Q1", "target": "R-Q2",  "value": 121543},
+
+                       {"source": "R-Q1", "target": "H-Q2",  "value": 16216},
+                       {"source": "R-Q1", "target": "M-Q2",  "value": 17302},
+                       {"source": "R-Q1", "target": "L-Q2",  "value": 20559},
+                       {"source": "R-Q1", "target": "R-Q2",  "value": 827929},
+                       // {"source": "R-Q1", "target": "A-Q2",  "value": 253420},
+
+                       {"source": "A-Q1", "target": "H-Q2",  "value": 39276},
+                       {"source": "A-Q1", "target": "M-Q2",  "value": 54315},
+                       {"source": "A-Q1", "target": "L-Q2",  "value": 89938},
+                       // {"source": "A-Q1", "target": "A-Q2",  "value": 76504113},
+                    ];
+
+            var myChart = echarts.init(document.getElementById('main')); 
+            var option = {
+                        title: {
+                        text: 'Sankey Diagram for US SB Sits Migration',
+                        subtext: 'From the begin of FY17Q1 to the end of FY17Q2 -Created by Wuqing Li',
+                        top: 'auto',
+                        right: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            triggerOn: 'mousemove'
+                        },
+                        series: [
+                            {
+                                type: 'sankey',
+                                layout:'none',
+                                data: nodes,
+                                links: links,
+                                lineStyle: {
+                                    normal: {
+                                        curveness: 0.5
+                                    }
+                                }
+                            }
+                        ]
+                    }; 
+            // 为echarts对象加载数据 
+            myChart.setOption(option); 
+            //随着网页缩放自动缩放图标
+            window.onresize = myChart.resize
+        </script>
+    </body>
+</html>
